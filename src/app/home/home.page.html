@@ -1,20 +1,49 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Mis Tareas
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list lines="full">
+    <ion-item-sliding *ngFor="let item of myTasks">
+      <ion-item (click)="detailTask()">
+        <ion-label [ngClass]="item.isDone ? 'isDone': ''">{{item.title}}</ion-label>
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option color="success" (click)="doneTask(item.id)">Hecho</ion-item-option>
+        <ion-item-option (click)="editTask(item.id)">Editar</ion-item-option>
+        <ion-item-option color="danger" (click)="deleteTask(item.id)">Eliminar</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button id="present-alert">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-alert trigger="present-alert" header="Anadir Tarea" (didDismiss)="setOpen(false)" [isOpen]="isAlertOpen" [buttons]="alertButtons" [inputs]="alertInputs" ></ion-alert>
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="detailTask()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam saepe fuga dolore at eos voluptatem harum
+          aliquid nihil consequuntur pariatur iste id fugiat.
+        </p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
