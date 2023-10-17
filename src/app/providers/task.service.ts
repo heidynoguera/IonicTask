@@ -30,8 +30,6 @@ export class TaskService {
            this.tasks[indexTask].title = t.title;
            this.tasks[indexTask].description = t.description;
            this.tasks[indexTask].isDone = t.isDone;
-
-
     }
         return this.storage.set('tasks', this.tasks);
     }

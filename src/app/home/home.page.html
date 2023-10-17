@@ -1,6 +1,6 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
+<ion-header  [translucent]="true">
+  <ion-toolbar >
+    <ion-title >
       Mis Tareas
     </ion-title>
   </ion-toolbar>
@@ -11,7 +11,7 @@
   <ion-list lines="full">
     <ion-item-sliding *ngFor="let item of myTasks">
       <ion-item (click)="detailTask()">
-        <ion-label [ngClass]="item.isDone ? 'isDone': ''">{{item.title}}</ion-label>
+        <ion-label [ngClass]="item.isDone ? 'isDone': 'notDone'">{{item.title}}</ion-label>
       </ion-item>
       <ion-item-options>
         <ion-item-option color="success" (click)="doneTask(item.id)">Hecho</ion-item-option>

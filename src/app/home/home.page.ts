@@ -101,13 +101,13 @@ export class HomePage {
     },
   ];
 
-  doneTask(id: any) {
-    this.editId = id;
-    const myTasks = this.taskService.editTask(id);
-    myTasks[0].isDone = !myTasks[0].isDone;
-    this.taskService.saveTask(myTasks).then(resp => {
+doneTask(id: any) {
+  const taskIndex = this.myTasks.findIndex(task => task.id === id);
+    this.myTasks[taskIndex].isDone = !this.myTasks[taskIndex].isDone;
+    this.taskService.saveTask(this.myTasks[taskIndex]).then(resp => {
       this.myTasks = resp;
     });
-    this.editId = undefined;
-  }
+  
+  this.editId = undefined;
+}
 }
